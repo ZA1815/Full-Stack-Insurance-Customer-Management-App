@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Portal</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Toggle between login and customer views using hidden class -->
+    <div id="loginPage" class="container login-container">
+        <div class="logo">Employee Portal</div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+            <div id="loginError" class="error-message">Invalid username or password</div>
+        </form>
+    </div>
+
+    <div id="customerPage" class="container customer-container hidden">
+        <div class="header">
+            <div class="welcome-text">Welcome, <span id="employeeName">Employee</span></div>
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+        </div>
+
+        <div class="main-content-area">
+
+            <div class="left-panel">
+                <div class="search-section">
+                    <h3>Search Customers</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="searchName">Name</label>
+                            <input type="text" id="searchName" placeholder="Search by name...">
+                        </div>
+                        <div class="form-group">
+                            <label for="searchPolicy">Policy Number</label>
+                            <input type="text" id="searchPolicy" placeholder="Search by policy...">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" id="searchBtn">Search</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="customer-form">
+                    <div class="form-title" id="formTitle">Add New Customer</div>
+                    <form id="customerForm">
+                        <input type="hidden" id="customerId" name="customerId">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="source">Source</label>
+                                <input type="text" id="source" name="source" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nameInsured">Name Insured</label>
+                                <input type="text" id="nameInsured" name="name_insured" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactPerson">Contact Person</label>
+                                <input type="text" id="contactPerson" name="contact_person" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number</label>
+                                <input type="tel" id="phoneNumber" name="phone_number" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" name="address" required></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="policyNumber">Policy Number</label>
+                                <input type="text" id="policyNumber" name="policy_number" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="carrier">Carrier</label>
+                                <input type="text" id="carrier" name="carrier" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="premium">Premium</label>
+                                <input type="number" id="premium" name="premium" step="0.01" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="effectiveDate">Effective Date</label>
+                                <input type="date" id="effectiveDate" name="effective_date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="expirationDate">Expiration Date</label>
+                                <input type="date" id="expirationDate" name="expiration_date" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="alert">Alert</label>
+                                <select id="alert" name="alert" required>
+                                    <option value="">Select Alert Status</option>
+                                    <option value="due">Due</option>
+                                    <option value="not-due">Not Due</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="product">Product</label>
+                                <input type="text" id="product" name="product" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select id="status" name="status" required>
+                                    <option value="">Select Status</option>
+                                    <option value="active">Active</option>
+                                    <option value="canceled">Canceled</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="reference">Reference</label>
+                                <input type="text" id="reference" name="reference">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="additionalComments">Additional Comments</label>
+                            <textarea id="additionalComments" name="additional_comments"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" id="saveBtn">Save Customer</button>
+                            <button type="button" id="newBtn" class="btn-secondary">New Customer</button>
+                            <button type="button" id="deleteBtn" class="btn-danger hidden">Delete Customer</button>
+                        </div>
+                        
+                        <div id="formError" class="error-message"></div>
+                        <div id="formSuccess" class="success-message"></div>
+                    </form>
+                </div>
+            </div> 
+
+            <div id="customerList" class="customer-list right-panel">
+                <div class="loading">Loading customers...</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/customers.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
